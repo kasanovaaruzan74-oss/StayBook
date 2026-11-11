@@ -45,5 +45,34 @@ def create_category(data: CategoryCreate, session: SessionDep):
     return category
 
 
+@router.patch("/{category_id}", response_model=CategoryRead, summary="Санат деректерін өзгерту")
+def update_category(category_id: int, data: CategoryUpdate, session: SessionDep):
+    category = session.get(RoomCategory, category_id)
+    if category is None:
+        raise HTTPException(404, "Нөмір санаты табылмады.")
+    category.sqlmodel_update(data.model_dump(exclude_unset=True))
+    session.add(category)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(409, "Мұндай санат атауы бұрыннан бар.")
+    session.refresh(category)
+    return category
 
 
+@router.delete("/{category_id}", status_code=status.HTTP_204_NO_CONTENT,
+               summary="Нөмірлері жоқ санатты өшіру")
+def delete_category(category_id: int, session: SessionDep):
+    category = session.get(RoomCategory, category_id)
+    if category is None:
+        raise HTTPException(404, "Нөмір санаты табылмады.")
+    if session.exec(select(Room.id).where(Room.category_id == category_id).limit(1)).first() is not None:
+        raise HTTPException(409, "Бұл санатта нөмірлер бар. Алдымен оларды өшіріңіз.")
+    session.delete(category)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(409, "Бұл санат басқа жазбалармен байланысқан.")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

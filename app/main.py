@@ -17,11 +17,11 @@ async def lifespan(_app: FastAPI):
 app = FastAPI(
     title="StayBook — Қонақүй нөмірлерін брондау",
     description=(
-        "1–3 зертханалық жұмыс: SQLModel, SQLite, REST API, валидация және GET және POST. "
+        "1–4 зертханалық жұмыс: SQLModel, SQLite, REST API, валидация және толық CRUD. "
         "Бағалар теңгемен (KZT) беріледі. Кіру және шығу күндері [check_in, check_out) "
         "аралығын білдіреді: бір брондау аяқталған күні келесісі бастала алады."
     ),
-    version="0.3.0",
+    version="1.0.0",
     lifespan=lifespan,
 )
 

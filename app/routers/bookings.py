@@ -132,5 +132,42 @@ def create_booking(payload: BookingCreate, session: SessionDep) -> Booking:
     return _save_booking(session, booking)
 
 
+@router.patch(
+    "/{booking_id}", response_model=BookingRead, summary="Брондауды ішінара өзгерту"
+)
+def update_booking(
+    booking_id: int, payload: BookingUpdate, session: SessionDep
+) -> Booking:
+    _reserve_writer(session)
+    booking = _get_booking(session, booking_id)
+    changes = payload.model_dump(exclude_unset=True)
+    _validate_booking(
+        session,
+        guest_id=changes.get("guest_id", booking.guest_id),
+        room_id=changes.get("room_id", booking.room_id),
+        check_in=changes.get("check_in", booking.check_in),
+        check_out=changes.get("check_out", booking.check_out),
+        booking_status=changes.get("status", booking.status),
+        exclude_id=booking_id,
+    )
+    booking.sqlmodel_update(changes)
+    return _save_booking(session, booking)
 
 
+@router.delete(
+    "/{booking_id}",
+    status_code=http_status.HTTP_204_NO_CONTENT,
+    response_class=Response,
+    summary="Брондауды өшіру",
+)
+def delete_booking(booking_id: int, session: SessionDep) -> Response:
+    booking = _get_booking(session, booking_id)
+    session.delete(booking)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(
+            status_code=409, detail="Брондауды өшіру мүмкін болмады."
+        ) from None
+    return Response(status_code=http_status.HTTP_204_NO_CONTENT)

@@ -45,5 +45,34 @@ def create_guest(data: GuestCreate, session: SessionDep):
     return guest
 
 
+@router.patch("/{guest_id}", response_model=GuestRead, summary="Қонақ деректерін өзгерту")
+def update_guest(guest_id: int, data: GuestUpdate, session: SessionDep):
+    guest = session.get(Guest, guest_id)
+    if guest is None:
+        raise HTTPException(404, "Қонақ табылмады.")
+    guest.sqlmodel_update(data.model_dump(exclude_unset=True))
+    session.add(guest)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(409, "Мұндай телефон немесе email бұрыннан тіркелген.")
+    session.refresh(guest)
+    return guest
 
 
+@router.delete("/{guest_id}", status_code=status.HTTP_204_NO_CONTENT,
+               summary="Брондауы жоқ қонақты өшіру")
+def delete_guest(guest_id: int, session: SessionDep):
+    guest = session.get(Guest, guest_id)
+    if guest is None:
+        raise HTTPException(404, "Қонақ табылмады.")
+    if session.exec(select(Booking.id).where(Booking.guest_id == guest_id).limit(1)).first() is not None:
+        raise HTTPException(409, "Қонақта брондаулар бар. Алдымен оларды өшіріңіз.")
+    session.delete(guest)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(409, "Бұл қонақ басқа жазбалармен байланысқан.")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

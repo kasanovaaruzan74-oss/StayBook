@@ -27,12 +27,17 @@ FONT = "DejaVu Sans"
 MONO = "DejaVu Sans Mono"
 INK = "183A56"
 TEAL = "087F8C"
+STUDENT = "Касанова Аружан"
+GROUP = "Ис-24а"
 SOURCES = (
     ("report.md", "Жоба туралы"),
     ("lab_01.md", "№1 зертханалық жұмыс"),
     ("lab_02.md", "№2 зертханалық жұмыс"),
     ("lab_03.md", "№3 зертханалық жұмыс"),
     ("lab_04.md", "№4 зертханалық жұмыс"),
+    ("lab_05.md", "№5 зертханалық жұмыс"),
+    ("lab_06.md", "№6 зертханалық жұмыс"),
+    ("lab_07.md", "№7 зертханалық жұмыс"),
     ("defense_questions.md", "Қорғауға дайындық"),
 )
 
@@ -85,9 +90,11 @@ def set_shading(cell, color: str) -> None:
 
 
 class ReportBuilder:
-    def __init__(self) -> None:
+    def __init__(self, student: str = STUDENT, group: str = GROUP) -> None:
         self.doc = Document()
         self.images: set[Path] = set()
+        self.student = student
+        self.group = group
         self.configure()
 
     def configure(self) -> None:
@@ -127,16 +134,16 @@ class ReportBuilder:
         caption.font.color.rgb = RGBColor.from_string("526675")
         header = section.header.paragraphs[0]
         header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        font_for(header.add_run("StayBook  •  №1–4 зертханалық жұмыстар"), size=8).font.color.rgb = RGBColor.from_string("677888")
+        font_for(header.add_run("StayBook  •  №1–7 зертханалық жұмыстар"), size=8).font.color.rgb = RGBColor.from_string("677888")
         footer = section.footer.paragraphs[0]
         footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
         font_for(footer.add_run("StayBook  |  "), size=8)
         field = element("w:fldSimple", **{"w:instr": "PAGE"})
         footer._p.append(field)
-        doc.core_properties.title = "StayBook — №1–4 зертханалық жұмыстар есебі"
+        doc.core_properties.title = "StayBook — №1–7 зертханалық жұмыстар есебі"
         doc.core_properties.subject = "Қонақүй нөмірлерін брондау ақпараттық жүйесі"
-        doc.core_properties.author = ""
-        doc.core_properties.keywords = "StayBook, FastAPI, SQLModel, SQLite, зертханалық жұмыс"
+        doc.core_properties.author = self.student
+        doc.core_properties.keywords = "StayBook, FastAPI, SQLModel, SQLite, Streamlit, Docker, pytest, зертханалық жұмыс"
 
     def title_page(self) -> None:
         doc = self.doc
@@ -152,26 +159,31 @@ class ReportBuilder:
         font_for(p.add_run("Қонақүй нөмірлерін брондау\nақпараттық жүйесі"), size=17)
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        font_for(p.add_run("№1 · №2 · №3 · №4"), size=15).font.color.rgb = RGBColor.from_string(TEAL)
+        font_for(p.add_run("№1 · №2 · №3 · №4 · №5 · №6 · №7"), size=15).font.color.rgb = RGBColor.from_string(TEAL)
         p.paragraph_format.space_after = Pt(42)
-        for label in ("Білім алушы", "Тобы", "Оқытушы", "Тапсыру күні"):
+        for label, value in (
+            ("Білім алушы", self.student),
+            ("Тобы", self.group),
+            ("Оқытушы", "__________________________"),
+            ("Тапсыру күні", "__________________________"),
+        ):
             p = doc.add_paragraph()
             p.paragraph_format.left_indent = Cm(5)
             p.paragraph_format.space_after = Pt(14)
-            font_for(p.add_run(f"{label}: __________________________"), size=10.5)
+            font_for(p.add_run(f"{label}: {value}"), size=10.5)
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(42)
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        font_for(p.add_run("Python · FastAPI · SQLModel · SQLite · Streamlit"), size=10).font.color.rgb = RGBColor.from_string("526675")
+        font_for(p.add_run("Python · FastAPI · SQLModel · SQLite\nStreamlit · Docker Compose · pytest"), size=10).font.color.rgb = RGBColor.from_string("526675")
         doc.add_page_break()
         doc.add_heading("Есептің құрамы", level=1)
         for _, title in SOURCES:
             p = doc.add_paragraph(style="List Bullet")
             add_inline(p, title)
         p = doc.add_paragraph()
-        add_inline(p, "Бұл есеп бір ақпараттық жүйені жобалаудан бастап, дерекқорын, REST API және толық CRUD әрекеттерін іске асыруға дейінгі төрт зертханалық жұмысты біріктіреді.")
+        add_inline(p, "Бұл есеп бір ақпараттық жүйені жобалауды, дерекқор мен толық CRUD API жасауды, Streamlit интерфейсін, Docker арқылы іске қосуды және автоматты тестілеуді қамтитын жеті зертханалық жұмысты біріктіреді.")
         p = doc.add_paragraph()
-        add_inline(p, "Титул бетіндегі білім алушы, топ, оқытушы және тапсыру күні жолдары тапсырар алдында толтырылады.")
+        add_inline(p, "Титул бетіндегі оқытушы мен тапсыру күні жолдары тапсырар алдында толтырылады.")
 
     def add_image(self, path: Path, caption: str) -> bool:
         path = path.resolve()
@@ -330,10 +342,16 @@ class ReportBuilder:
         if verification.is_file():
             self.doc.add_page_break()
             self.markdown(verification)
+        docker_verification = DOCS / "docker_verification.md"
+        if docker_verification.is_file():
+            self.doc.add_page_break()
+            self.markdown(docker_verification)
         screenshots = []
         for name, caption in (
             ("swagger.png", "Swagger UI — StayBook API әдістері"),
             ("frontend.png", "StayBook — пайдаланушы интерфейсі"),
+            ("docker.png", "Docker — контейнерлердің іске қосылуы"),
+            ("docker_compose.png", "Docker Compose — backend және frontend қызметтері"),
         ):
             path = next((candidate for candidate in (DOCS / "screenshots" / name, DOCS / name) if candidate.is_file()), None)
             if path and path.resolve() not in self.images:
@@ -349,9 +367,11 @@ class ReportBuilder:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=DOCS / "StayBook_Labs_1-4_Report.docx")
+    parser.add_argument("--output", type=Path, default=DOCS / "StayBook_Labs_1-7_Report.docx")
+    parser.add_argument("--student", default=STUDENT, help="Білім алушының аты-жөні")
+    parser.add_argument("--group", default=GROUP, help="Оқу тобы")
     args = parser.parse_args()
-    ReportBuilder().build(args.output)
+    ReportBuilder(student=args.student, group=args.group).build(args.output)
     print(f"Есеп дайын: {args.output.resolve()}")
 
 

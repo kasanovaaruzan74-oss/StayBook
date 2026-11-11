@@ -31,16 +31,16 @@
 
 ## 3. Git репозиторийі
 
-Қашықтағы ашық репозиторий атауы: `applied-is-project-2026`. Негізгі сипаттама `README.md` файлында беріледі, Python ортасы мен уақытша файлдар `.gitignore` арқылы алынып тасталады.
+Қашықтағы ашық репозиторий: [kasanovaaruzan74-oss/StayBook](https://github.com/kasanovaaruzan74-oss/StayBook). Негізгі сипаттама `README.md` файлында беріледі, Python ортасы мен уақытша файлдар `.gitignore` арқылы алынып тасталады.
 
 Жергілікті жүктеу:
 
 ```bash
-git clone <репозиторийдің_HTTPS_сілтемесі>
-cd applied-is-project-2026
+git clone https://github.com/kasanovaaruzan74-oss/StayBook.git
+cd StayBook
 ```
 
-Жобаның репозиторийі әлі жасалмаған жағдайда GitHub-та **New repository → Public**, атауын енгізу және README мен Python `.gitignore` қосу қадамдары орындалады.
+Қолданыстағы `StayBook` репозиторийі пайдаланылады. Нұсқаулықтағы `applied-is-project-2026` — атау стилінің мысалы; бұл жобаның нақты атауы — `StayBook`.
 
 ## 4. Жергілікті IDE және орта
 
@@ -61,7 +61,7 @@ python -m pip install -r requirements-dev.txt
 
 > Python тілінде қонақүй нөмірлерін брондау жүйесін жасаймын. FastAPI сервері, SQLModel дерекқоры және Streamlit интерфейсі үшін түсінікті папка құрылымын ұсын. fastapi, uvicorn, sqlmodel, streamlit тәуелділіктерін көрсет. Әр файлдың міндетін түсіндір.
 
-Жобада `app/`, `app/routers/`, `frontend/`, `tests/`, `docs/`, `scripts/` бөлімдері қарастырылған. Толық қызметтер кейінгі зертханаларда осы құрылымға қосылады.
+Жобада `app/database/`, `app/routers/`, `app/frontend/`, `tests/`, `docs/`, `scripts/` бөлімдері қарастырылған. Толық қызметтер кейінгі зертханаларда осы құрылымға қосылады.
 
 ## 5. Өзгерістерді сақтау
 

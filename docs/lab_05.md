@@ -11,7 +11,7 @@
 Негізгі файл — `app/frontend/ui.py`. Алдымен жоба түбірінде белсенді виртуалды ортамен деректерді дайындап, API-ді іске қосыңыз:
 
 ```bash
-python seed.py
+python seed.py --if-empty
 uvicorn app.main:app --reload
 ```
 

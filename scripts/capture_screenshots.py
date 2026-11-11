@@ -52,6 +52,14 @@ def capture():
         page.locator('[data-testid="stDataFrame"]').first.wait_for()
         assert page.locator('[data-testid="stException"]').count() == 0
         page.screenshot(path=str(OUTPUT / "frontend.png"), full_page=True)
+        search = page.get_by_label("Нөмірді іздеу", exact=True)
+        search.fill("10")
+        search.press("Enter")
+        page.wait_for_timeout(700)
+        assert page.locator('[data-testid="stException"]').count() == 0
+        page.screenshot(path=str(OUTPUT / "frontend_search.png"), full_page=True)
+        search.fill("")
+        search.press("Enter")
         page.get_by_text("Брондаулар", exact=True).first.click()
         page.get_by_role("heading", name="Брондаулар").wait_for()
         assert page.locator('[data-testid="stException"]').count() == 0

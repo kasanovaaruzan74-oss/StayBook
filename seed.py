@@ -4,6 +4,7 @@
 Қолмен өзгертілген деректерді бастапқы мәнге қайтармайды.
 """
 
+import argparse
 import json
 from datetime import date
 from decimal import Decimal
@@ -16,7 +17,14 @@ from app.database.db import engine, init_db
 from app.database.models import Booking, BookingStatus, Guest, Room, RoomCategory
 
 
-def seed_data(db_engine: Engine | None = None) -> dict[str, int]:
+def _counts(session: Session) -> dict[str, int]:
+    return {
+        model.__tablename__: session.exec(select(func.count()).select_from(model)).one()
+        for model in (Guest, RoomCategory, Room, Booking)
+    }
+
+
+def seed_data(db_engine: Engine | None = None, *, only_if_empty: bool = False) -> dict[str, int]:
     """Деректерді қосып, кестелердегі жалпы жазбалар санын қайтарады."""
     target_engine = db_engine if db_engine is not None else engine
     if db_engine is None:
@@ -43,6 +51,12 @@ def seed_data(db_engine: Engine | None = None) -> dict[str, int]:
     capacities = [2, 2, 2, 4, 3]
 
     with Session(target_engine) as session:
+        # Контейнер қайта іске қосылғанда пайдаланушы өзгерткен немесе жойған
+        # деректерге тимейміз. Автоматты бастапқы толтыру тек бос базаға қажет.
+        if only_if_empty:
+            counts = _counts(session)
+            if any(counts.values()):
+                return counts
         categories = []
         for name, description in categories_data:
             category = session.exec(select(RoomCategory).where(RoomCategory.name == name)).first()
@@ -97,13 +111,11 @@ def seed_data(db_engine: Engine | None = None) -> dict[str, int]:
                 session.add(booking)
 
         session.commit()
-        return {
-            "guests": session.exec(select(func.count()).select_from(Guest)).one(),
-            "room_categories": session.exec(select(func.count()).select_from(RoomCategory)).one(),
-            "rooms": session.exec(select(func.count()).select_from(Room)).one(),
-            "bookings": session.exec(select(func.count()).select_from(Booking)).one(),
-        }
+        return _counts(session)
 
 
 if __name__ == "__main__":
-    print(json.dumps(seed_data(), ensure_ascii=False, indent=2))
+    parser = argparse.ArgumentParser(description="StayBook мысал деректерін қосу")
+    parser.add_argument("--if-empty", action="store_true", help="Тек толығымен бос базаны толтыру")
+    args = parser.parse_args()
+    print(json.dumps(seed_data(only_if_empty=args.if_empty), ensure_ascii=False, indent=2))

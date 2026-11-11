@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  backend:
+    image: staybook-backend:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////data/database.db
+      SQL_ECHO: "false"
+    volumes:
+      - staybook_data:/data
+    networks:
+      - staybook_network
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/', timeout=3).read()"
+      interval: 5s
+      timeout: 4s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+  frontend:
+    image: staybook-frontend:local
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    environment:
+      BACKEND_URL: http://backend:8000
+      NO_PROXY: backend,localhost,127.0.0.1
+      no_proxy: backend,localhost,127.0.0.1
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - staybook_network
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3).read()"
+      interval: 10s
+      timeout: 4s
+      retries: 6
+      start_period: 15s
+    restart: unless-stopped
+
+volumes:
+  staybook_data:
+
+networks:
+  staybook_network:
+    driver: bridge

@@ -12,8 +12,8 @@ from sqlalchemy import func
 from sqlalchemy.engine import Engine
 from sqlmodel import Session, SQLModel, select
 
-from app.db import engine, init_db
-from app.models import Booking, BookingStatus, Guest, Room, RoomCategory
+from app.database.db import engine, init_db
+from app.database.models import Booking, BookingStatus, Guest, Room, RoomCategory
 
 
 def seed_data(db_engine: Engine | None = None) -> dict[str, int]:

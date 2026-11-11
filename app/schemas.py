@@ -6,7 +6,7 @@ from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from app.models import BookingStatus
+from app.database.models import BookingStatus
 
 Name = Annotated[str, Field(min_length=1, max_length=100)]
 Phone = Annotated[str, Field(min_length=7, max_length=30)]

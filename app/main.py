@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.db import init_db
+from app.database.db import init_db
 from app.routers import bookings, categories, guests, rooms
 
 

@@ -6,8 +6,8 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
 
-from app.db import get_session
-from app.models import Room, RoomCategory
+from app.database.db import get_session
+from app.database.models import Room, RoomCategory
 from app.schemas import CategoryCreate, CategoryRead, CategoryUpdate
 
 router = APIRouter(prefix="/categories", tags=["Нөмір санаттары"])

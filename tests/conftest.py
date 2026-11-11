@@ -13,8 +13,8 @@ def engine(tmp_path, monkeypatch):
     database_url = f"sqlite:///{tmp_path / 'test.db'}"
     monkeypatch.setenv("DATABASE_URL", database_url)
     monkeypatch.setenv("SQL_ECHO", "0")
-    database = import_module("app.db")
-    import_module("app.models")
+    database = import_module("app.database.db")
+    import_module("app.database.models")
     test_engine = create_engine(database_url, connect_args={"check_same_thread": False})
 
     @event.listens_for(test_engine, "connect")
@@ -29,7 +29,7 @@ def engine(tmp_path, monkeypatch):
 
 @pytest.fixture
 def client(engine):
-    database = import_module("app.db")
+    database = import_module("app.database.db")
     application = import_module("app.main").app
 
     def isolated_session():

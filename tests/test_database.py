@@ -13,7 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_schema_contains_foreign_keys_and_orm_relationships(engine):
-    from app.models import Booking, Guest, Room, RoomCategory
+    from app.database.models import Booking, Guest, Room, RoomCategory
 
     schema = inspect(engine)
     assert {"guests", "room_categories", "rooms", "bookings"}.issubset(schema.get_table_names())

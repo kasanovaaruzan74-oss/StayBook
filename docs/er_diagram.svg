@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1330" viewBox="0 0 1800 1330" role="img" aria-labelledby="title description">
+<title id="title">StayBook дерекқорының ER сызбасы</title>
+<desc id="description">Қонақтар, нөмір санаттары, қонақүй нөмірлері және брондаулар. Үш бірден көпке байланыс.</desc>
+<rect width="1800" height="1330" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#15191d">
+<text x="900.0" y="96" font-size="60" font-weight="bold" fill="#15191d" text-anchor="middle" font-family="DejaVu Serif,serif">StayBook дерекқорының ER сызбасы</text>
+<text x="900.0" y="166.4" font-size="28" font-weight="normal" fill="#15191d" text-anchor="middle">PK — бастапқы кілт     FK — сыртқы кілт     1:0..N — бірден көпке байланыс</text>
+<polyline points="415,564 415,765" fill="none" stroke="#343b42" stroke-width="3"/>
+<text x="439" y="611" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">1</text>
+<text x="439" y="746" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">0..N</text>
+<polyline points="1385,519 1385,765" fill="none" stroke="#343b42" stroke-width="3"/>
+<text x="1409" y="566" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">1</text>
+<text x="1409" y="746" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">0..N</text>
+<polyline points="1075,990 725,990" fill="none" stroke="#343b42" stroke-width="3"/>
+<text x="1034" y="968" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">1</text>
+<text x="746" y="968" font-size="30" font-weight="bold" fill="#15191d" text-anchor="start">0..N</text>
+<rect x="105" y="260" width="620" height="304" rx="14" fill="#f0f2f4" stroke="#8e969f" stroke-width="2"/>
+<text x="133" y="312.8" font-size="36" font-weight="bold" fill="#15191d" text-anchor="start">Қонақтар</text>
+<text x="134" y="351.6" font-size="27" font-weight="bold" fill="#64717c" text-anchor="start">guests</text>
+<line x1="127" y1="369" x2="703" y2="369" stroke="#b1b8bf" stroke-width="2"/>
+<text x="136" y="416" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">PK  id</text>
+<text x="136" y="461" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">full_name</text>
+<text x="136" y="506" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">phone UNIQUE</text>
+<text x="136" y="551" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">email UNIQUE</text>
+<rect x="1075" y="260" width="620" height="259" rx="14" fill="#f0f2f4" stroke="#8e969f" stroke-width="2"/>
+<text x="1103" y="312.8" font-size="36" font-weight="bold" fill="#15191d" text-anchor="start">Нөмір санаттары</text>
+<text x="1104" y="351.6" font-size="27" font-weight="bold" fill="#64717c" text-anchor="start">room_categories</text>
+<line x1="1097" y1="369" x2="1673" y2="369" stroke="#b1b8bf" stroke-width="2"/>
+<text x="1106" y="416" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">PK  id</text>
+<text x="1106" y="461" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">name UNIQUE</text>
+<text x="1106" y="506" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">description</text>
+<rect x="105" y="765" width="620" height="394" rx="14" fill="#f0f2f4" stroke="#8e969f" stroke-width="2"/>
+<text x="133" y="817.8" font-size="36" font-weight="bold" fill="#15191d" text-anchor="start">Брондаулар</text>
+<text x="134" y="856.6" font-size="27" font-weight="bold" fill="#64717c" text-anchor="start">bookings</text>
+<line x1="127" y1="874" x2="703" y2="874" stroke="#b1b8bf" stroke-width="2"/>
+<text x="136" y="921" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">PK  id</text>
+<text x="136" y="966" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">FK  guest_id</text>
+<text x="136" y="1011" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">FK  room_id</text>
+<text x="136" y="1056" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">check_in</text>
+<text x="136" y="1101" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">check_out</text>
+<text x="136" y="1146" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">status</text>
+<rect x="1075" y="765" width="620" height="349" rx="14" fill="#f0f2f4" stroke="#8e969f" stroke-width="2"/>
+<text x="1103" y="817.8" font-size="36" font-weight="bold" fill="#15191d" text-anchor="start">Қонақүй нөмірлері</text>
+<text x="1104" y="856.6" font-size="27" font-weight="bold" fill="#64717c" text-anchor="start">rooms</text>
+<line x1="1097" y1="874" x2="1673" y2="874" stroke="#b1b8bf" stroke-width="2"/>
+<text x="1106" y="921" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">PK  id</text>
+<text x="1106" y="966" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">FK  category_id</text>
+<text x="1106" y="1011" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">room_number UNIQUE</text>
+<text x="1106" y="1056" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">price_per_night</text>
+<text x="1106" y="1101" font-size="30" font-weight="normal" fill="#15191d" text-anchor="start">capacity</text>
+<text x="900.0" y="1278" font-size="25" font-weight="normal" fill="#59636d" text-anchor="middle">Нөмір бір-бірімен қабаттаспайтын күндерге бірнеше рет брондалуы мүмкін.</text>
+</g>
+</svg>

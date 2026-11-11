@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17" type="device">
+  <diagram id="staybook-er" name="StayBook ER">
+    <mxGraphModel dx="1800" dy="1330" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1330" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="StayBook дерекқорының ER сызбасы" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=58;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="32" width="1640" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="PK — бастапқы кілт     FK — сыртқы кілт     1:0..N — бірден көпке байланыс" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=28;" vertex="1" parent="1">
+          <mxGeometry x="80" y="128" width="1640" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Нөмір бір-бірімен қабаттаспайтын күндерге бірнеше рет брондалуы мүмкін." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=25;fontColor=#59636d;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1240" width="1640" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="guests" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#f0f2f4;strokeColor=#8e969f;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="105" y="260" width="620" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-title" value="Қонақтар" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=36;fontStyle=1;" vertex="1" parent="guests">
+          <mxGeometry x="28" y="24" width="564" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-sql" value="guests" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=27;fontStyle=1;fontColor=#64717c;" vertex="1" parent="guests">
+          <mxGeometry x="29" y="70" width="562" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-line" style="endArrow=none;html=1;strokeColor=#b1b8bf;strokeWidth=2;" edge="1" parent="guests">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="22" y="109" as="sourcePoint" />
+            <mxPoint x="598" y="109" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="guests-field-0" value="PK  id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="guests">
+          <mxGeometry x="31" y="132" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-field-1" value="full_name" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="guests">
+          <mxGeometry x="31" y="177" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-field-2" value="phone UNIQUE" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="guests">
+          <mxGeometry x="31" y="222" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="guests-field-3" value="email UNIQUE" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="guests">
+          <mxGeometry x="31" y="267" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#f0f2f4;strokeColor=#8e969f;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1075" y="260" width="620" height="259" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories-title" value="Нөмір санаттары" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=36;fontStyle=1;" vertex="1" parent="room_categories">
+          <mxGeometry x="28" y="24" width="564" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories-sql" value="room_categories" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=27;fontStyle=1;fontColor=#64717c;" vertex="1" parent="room_categories">
+          <mxGeometry x="29" y="70" width="562" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories-line" style="endArrow=none;html=1;strokeColor=#b1b8bf;strokeWidth=2;" edge="1" parent="room_categories">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="22" y="109" as="sourcePoint" />
+            <mxPoint x="598" y="109" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="room_categories-field-0" value="PK  id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="room_categories">
+          <mxGeometry x="31" y="132" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories-field-1" value="name UNIQUE" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="room_categories">
+          <mxGeometry x="31" y="177" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="room_categories-field-2" value="description" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="room_categories">
+          <mxGeometry x="31" y="222" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#f0f2f4;strokeColor=#8e969f;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="105" y="765" width="620" height="394" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-title" value="Брондаулар" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=36;fontStyle=1;" vertex="1" parent="bookings">
+          <mxGeometry x="28" y="24" width="564" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-sql" value="bookings" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=27;fontStyle=1;fontColor=#64717c;" vertex="1" parent="bookings">
+          <mxGeometry x="29" y="70" width="562" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-line" style="endArrow=none;html=1;strokeColor=#b1b8bf;strokeWidth=2;" edge="1" parent="bookings">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="22" y="109" as="sourcePoint" />
+            <mxPoint x="598" y="109" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bookings-field-0" value="PK  id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="132" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-field-1" value="FK  guest_id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="177" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-field-2" value="FK  room_id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="222" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-field-3" value="check_in" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="267" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-field-4" value="check_out" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="312" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="bookings-field-5" value="status" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="bookings">
+          <mxGeometry x="31" y="357" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms" value="" style="rounded=1;arcSize=7;whiteSpace=wrap;html=1;fillColor=#f0f2f4;strokeColor=#8e969f;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1075" y="765" width="620" height="349" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-title" value="Қонақүй нөмірлері" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=36;fontStyle=1;" vertex="1" parent="rooms">
+          <mxGeometry x="28" y="24" width="564" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-sql" value="rooms" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=27;fontStyle=1;fontColor=#64717c;" vertex="1" parent="rooms">
+          <mxGeometry x="29" y="70" width="562" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-line" style="endArrow=none;html=1;strokeColor=#b1b8bf;strokeWidth=2;" edge="1" parent="rooms">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="22" y="109" as="sourcePoint" />
+            <mxPoint x="598" y="109" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rooms-field-0" value="PK  id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="rooms">
+          <mxGeometry x="31" y="132" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-field-1" value="FK  category_id" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="rooms">
+          <mxGeometry x="31" y="177" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-field-2" value="room_number UNIQUE" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="rooms">
+          <mxGeometry x="31" y="222" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-field-3" value="price_per_night" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="rooms">
+          <mxGeometry x="31" y="267" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="rooms-field-4" value="capacity" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;spacing=0;fontSize=30;" vertex="1" parent="rooms">
+          <mxGeometry x="31" y="312" width="558" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-0" source="guests" target="bookings" parent="1" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#343b42;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-0-label-0" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="439" y="587" width="98" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-0-label-1" value="0..N" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="439" y="722" width="98" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-1" source="room_categories" target="rooms" parent="1" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#343b42;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-1-label-0" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1409" y="542" width="98" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-1-label-1" value="0..N" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1409" y="722" width="98" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-2" source="rooms" target="bookings" parent="1" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#343b42;strokeWidth=3;exitX=0;exitY=0.6446991404011462;exitDx=0;exitDy=0;entryX=1;entryY=0.5710659898477157;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-2-label-0" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1034" y="944" width="98" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-2-label-1" value="0..N" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=DejaVu Sans;fontSize=30;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="746" y="944" width="98" height="44" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
